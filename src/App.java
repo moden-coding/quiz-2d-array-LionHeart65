@@ -25,7 +25,7 @@ public class App {
             {4, 5, 6},
             {7, 8, 9}
         };
-
+        System.out.println(testArray1);
         // Examples of valid indices
         System.out.println("=== B+ Level Tests ===");
         System.out.println("Row = 1, Col = 1: Expected sum is (4+5+6+2+5+8) = 30");
@@ -51,13 +51,27 @@ public class App {
         System.out.println("\nRow = 2, Col = 0: Expected sum is (7+8+9+1+4) = 29");
         System.out.println("Your sum: " + columnRowAddition(testArray1, 2, 0));
 
-       
     
     }
 
 
-    public static int columnRowAddition(int[][] arr, int row, int col){
-        
-        return -1;//placeholder
+    public static int columnRowAddition(int[][] arr, int row, int col) {
+
+        if (row < 0 || col < 0) {
+            return -1;
+        }
+        if (row >= arr.length || col >= arr[0].length) {
+            return -1;
+        }
+        int sum = 0;
+        int[] rowArray = arr[row];
+        for (int i : rowArray) {
+            sum += i;
+        }
+
+        for (int[] is : arr) {
+            sum += is[col];
+        }
+        return sum - arr[row][col];
     }
 }
